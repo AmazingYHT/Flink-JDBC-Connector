@@ -27,20 +27,6 @@ public class Dag_1146550285812891648 {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        //开启checkpoint自我恢复
-        CheckpointConfig config = env.getCheckpointConfig();
-        config.enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.DELETE_ON_CANCELLATION);
-
-        //自我失败恢复设定
-        env.setRestartStrategy(RestartStrategies.failureRateRestart(
-                // 每个时间间隔的最大故障次数
-                300,
-                // 测量故障率的时间间隔
-                org.apache.flink.api.common.time.Time.of(5, TimeUnit.MINUTES),
-                // 延时
-                org.apache.flink.api.common.time.Time.of(10, TimeUnit.SECONDS)
-        ));
-
         //OutPutBean newOutPutBean = new OutPutBean();
         //Map<String, Object> props = new HashMap();
         //props.put("code", "111141435612272787456");
