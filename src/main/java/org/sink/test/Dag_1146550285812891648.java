@@ -43,12 +43,14 @@ public class Dag_1146550285812891648 {
 
         //OutPutBean newOutPutBean = new OutPutBean();
         //Map<String, Object> props = new HashMap();
-        //props.put("data", "{\"code\":\"111141435612272787456\",\"name\":\"T2032\",\"status\":1}\n");
+        //props.put("code", "111141435612272787456");
+        //props.put("name", "D2032");
+        //props.put("status", 1);
         //newOutPutBean.setProps(props);
-        //
-        //DataStream<OutPutBean> midPlatformKafkaOperatorStream1146550285854834688 = env.fromElements(newOutPutBean);
 
-        DataStream<OutPutBean> midPlatformKafkaOperatorStream1146550285854834688 = env.addSource(new SourceFunction<OutPutBean>() {
+        //DataStream<OutPutBean> midPlatformStream1146550285854834688 = env.fromElements(newOutPutBean);
+
+        DataStream<OutPutBean> midPlatformStream1146550285854834688 = env.addSource(new SourceFunction<OutPutBean>() {
             private volatile boolean isRunning = true;
 
             @Override
@@ -96,7 +98,7 @@ public class Dag_1146550285812891648 {
                 sinkerProps, true)
                 .getSink();
 
-        midPlatformKafkaOperatorStream1146550285854834688.addSink(sinkClickhouse);
+        midPlatformStream1146550285854834688.addSink(sinkClickhouse);
         env.execute("stream_task_1146550285812891648");
     }
 }
