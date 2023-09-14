@@ -101,8 +101,7 @@ public class SinkSingleJdbc<T> {
     public static void setPs(PreparedStatement ps, LinkedHashMap<String, Object> fields) throws IllegalAccessException, SQLException {
         int i = 1;
         for (Map.Entry<String, Object> entry : fields.entrySet()) {
-            String key = entry.getKey();
-            Object o = fields.get(key);
+            Object o = entry.getValue();
             if (o == null) {
                 ps.setNull(i, 0);
                 continue;
